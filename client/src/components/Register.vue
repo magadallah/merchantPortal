@@ -26,7 +26,6 @@
 <script>
 import AuthenticationService from '@/services/AuthenticationService'
 export default {
-
   data () {
     return {
       email: '',
@@ -53,5 +52,4 @@ export default {
 .error{
   color: red;
 }
-
 </style>
