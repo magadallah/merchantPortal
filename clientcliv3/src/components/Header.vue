@@ -1,7 +1,7 @@
 <template>
   <div>
     <v-toolbar fixed class="cyan" dark>
-      <v-toolbar-title>
+      <v-toolbar-title class="mr-4">
           <span class="gotohome"
           @click="navigateTo({name: 'home'})">
           Merchant Portal
@@ -21,6 +21,7 @@
       <v-spacer></v-spacer>
       <v-toolbar-items>
           <v-btn text 
+          v-if="!$store.state.isUserLoggedIn"
           @click="navigateTo({ name: 'login' })">
               login
               <!-- <router-link to="/register">Sign up</router-link> -->
