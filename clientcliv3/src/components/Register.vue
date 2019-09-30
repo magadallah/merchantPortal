@@ -1,13 +1,7 @@
 <template>
 <v-container>
 
-<v-layout column>
-  <v-flex class="flex-md-shrink-1">
-    <div class="white elevation-2">
-      <v-toolbar flat dense class="cyan" dark>
-        <v-toolbar-title>Register</v-toolbar-title>
-      </v-toolbar>
-      <div class="pl-5 pr-5 pt-2 pb-2">
+      <panel title="Register" >
         <form 
          name="merchant-portal-form"
          autocomplete="off">
@@ -34,16 +28,14 @@
    @click="register">
    Register
    </v-btn>
-	</div> 
-   </div>  
-  </v-flex>
-</v-layout>
+      </panel>
 </v-container>
 
 </template>
 
 <script>
 import AuthenticationService from '@/services/AuthenticationService'
+import Panel from '@/components/Panel'
 export default {
   data () {
     return {
@@ -52,6 +44,9 @@ export default {
       error: null,
       msg: null
     }
+  },
+  components: {
+    Panel
   },
   methods: {
     async register () {

@@ -1,0 +1,16 @@
+customer number
+datefrom
+dateto
+merchant id
+merchant name
+gross amount
+net amount
+-------------------------------------
+Merchant table
+merchantid
+batch type
+batch datefrombatch no
+no of transaction
+gross amount
+commission
+net amount

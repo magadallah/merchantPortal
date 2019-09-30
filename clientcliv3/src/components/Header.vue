@@ -7,6 +7,14 @@
           Merchant Portal
           </span>
           </v-toolbar-title>
+          <v-toolbar-items>
+            <v-btn
+            text 
+            @click="navigateTo({ name: 'merchantlist'})">
+            Merchants
+            </v-btn>
+          </v-toolbar-items>
+            
 
       <div class="flex-grow-1"></div>
 
@@ -26,25 +34,22 @@
               login
               <!-- <router-link to="/register">Sign up</router-link> -->
           </v-btn>
+
           <v-btn text 
+          v-if="$store.state.isUserLoggedIn"
+          @click="logout">
+              Logout
+              <!-- <router-link to="/register">Sign up</router-link> -->
+          </v-btn>
+
+          <v-btn text 
+          v-if="!$store.state.isUserLoggedIn"
           @click="navigateTo({ name: 'register' })">
               Sign Up
               <!-- <router-link to="/register">Sign up</router-link> -->
           </v-btn>
 
       </v-toolbar-items>
-
-      <!--template v-if="$vuetify.breakpoint.smAndUp">
-        <v-btn icon>
-          <v-icon>mdi-export-variant</v-icon>
-        </v-btn>
-        <v-btn icon>
-          <v-icon>mdi-delete-circle</v-icon>
-        </v-btn>
-        <v-btn icon>
-          <v-icon>mdi-plus-circle</v-icon>
-        </v-btn>
-      </template-->
     </v-toolbar>
   </div>
 </template>
@@ -55,6 +60,14 @@ export default {
     methods: {
         navigateTo (route){
             this.$router.push(route)
+        },
+        logout(){
+          this.$store.dispatch('setToken', null)
+          this.$store.dispatch('setUser', null)
+          this.$router.push({
+            name: 'home'
+          })
+          
         }
     }
   

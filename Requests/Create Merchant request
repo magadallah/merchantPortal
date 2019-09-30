@@ -1,0 +1,8 @@
+Merchant Create request
+{
+    "merchantname": "Merchant2",
+    "custnum": 1234567,
+    "actnum": 1234567890,
+    "grossamt": 202.2,
+    "netamt": 250.7
+ }

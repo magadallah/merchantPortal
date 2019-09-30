@@ -3,6 +3,8 @@ import Router from 'vue-router'
 import Home from './views/Home.vue'
 import Register from './views/Register.vue'
 import Login from './views/Login.vue'
+import Merchant from './views/Merchant.vue'
+import CreateMerchant from './views/Createmerchant.vue'
 
 Vue.use(Router)
 
@@ -32,6 +34,16 @@ export default new Router({
       path: '/login',
       name: 'login',
       component: Login
+    },
+    {
+      path: '/merchantlist',
+      name: 'merchantlist',
+      component: Merchant
+    },
+    {
+      path: '/merchantlist/createmerchant',
+      name: 'create-merchant',
+      component: CreateMerchant
     }
   ]
 })
