@@ -3,10 +3,11 @@
     <v-flex xs6>
     <panel title="Create Merchant">
     <v-text-field
-            v-model="merchant.merchantname"
             label="Merchant Name"
-            type="text"
             required
+            :rules="[required]"
+            type="text"
+            v-model="merchant.merchantname"
           ></v-text-field>
 
           <v-text-field
@@ -14,6 +15,7 @@
             label="Customer Number"
             type="number"
             required
+            :rules="[required]"
           ></v-text-field>
 
           <v-text-field
@@ -22,7 +24,11 @@
             Single-line
             type="number"
             required
+            :rules="[required]"
           ></v-text-field>
+        <div class="danger-alert" v-if="error">
+            {{error}}
+        </div>
           <v-btn class="cyan" dark
    @click="create">
    Create Merchant
@@ -48,17 +54,31 @@ export default {
             merchantname: null,
             custnum: null,
             merchantid: null
-        }
+        },
+          error : null,
+
+         required: (value) => !!value || 'Required.'
+          
       }
     },
     methods: {
         async create() {
+            this.error = null
+            const areAllFieldsFilledIn = Object
+            .keys(this.merchant)
+            .every(key => !!this.merchant[key])
+            if (!areAllFieldsFilledIn){
+                this.error = 'Please fill in all the required fields'
+                return
+            }
         try{
             await MerchantService.postMerchant(this.merchant)
+            this.$router.push({
+                name: 'merchantlist'
+            })
         } catch (err){
             console.log(err)
         }
-
       }
     }
 }
@@ -66,5 +86,7 @@ export default {
 </script>
 
 <style scoped>
-
+.danger-alert{
+    color: red
+}
 </style>

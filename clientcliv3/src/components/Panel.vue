@@ -7,7 +7,9 @@
     <div class="white elevation-2">
       <v-toolbar flat dense class="cyan" dark>
         <v-toolbar-title>{{title}}</v-toolbar-title>
+        <slot name="action" />
       </v-toolbar>
+      
       <div class="pl-5 pr-5 pt-2 pb-2">
           <slot align="center">
               No slot content defined
