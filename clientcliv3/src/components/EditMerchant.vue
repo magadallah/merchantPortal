@@ -1,7 +1,7 @@
 <template>
 <v-layout>
     <v-flex xs6>
-    <panel title="Create Merchant">
+    <panel title="Edit Merchant">
     <v-text-field
             label="Merchant Name"
             required
@@ -50,8 +50,8 @@
             {{error}}
         </div>
           <v-btn class="cyan" dark
-          @click="create">
-          Create Merchant
+          @click="save">
+          Update Merchant
           </v-btn>
     </panel>
     
@@ -85,25 +85,38 @@ export default {
       }
     },
     methods: {
-        async create() {
+        async save() {
             this.error = null
             const areAllFieldsFilledIn = Object
             .keys(this.merchant)
             .every(key => !!this.merchant[key])
-            if (!areAllFieldsFilledIn){
-                this.error = 'Please fill in all the required fields'
-                return
-            }
-        try{
-            await MerchantService.postMerchant(this.merchant)
+            // if (!areAllFieldsFilledIn){
+            //     this.error = 'Please fill in all the required fields'
+            //     return
+            // }
+            const viewmerchantId = this.$store.state.route.params.viewmerchantId
+            try{
+            await MerchantService.put(this.merchant)
             this.$router.push({
-                name: 'merchantlist'
+              name: 'viewmerchant',
+              params: {
+                viewmerchantId: viewmerchantId
+              }
             })
-        } catch (err){
-           //console.log(err)
-        }
-      },
+            }catch (err) {
+              console.log(err)
+            }
+      }
       
+    },
+    async mounted () {
+      try{
+          const viewmerchantId = this.$store.state.route.params.viewmerchantId
+          this.merchant = (await MerchantService.show(viewmerchantId)).data
+            
+        } catch (err){
+           console.log(err)
+        }
     }
 }
 

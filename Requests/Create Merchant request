@@ -6,3 +6,25 @@ Merchant Create request
     "grossamt": 202.2,
     "netamt": 250.7
  }
+ 
+merchantname: null,
+custnum: null,
+merchantid: null
+
+
+customer number
+datefrom
+dateto
+merchant id
+merchant name
+gross amount
+net amount
+-------------------------------------
+Merchant table
+merchantid
+batch type
+batch datefrombatch no
+no of transaction
+gross amount
+commission
+net amount

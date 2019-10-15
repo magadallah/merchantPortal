@@ -5,6 +5,8 @@ import Register from './views/Register.vue'
 import Login from './views/Login.vue'
 import Merchant from './views/Merchant.vue'
 import CreateMerchant from './views/Createmerchant.vue'
+import ViewMerchant from './views/Viewmerchant.vue'
+import EditMerchant from './views/Editmerchant.vue'
 
 Vue.use(Router)
 
@@ -29,6 +31,7 @@ export default new Router({
       path: '/register',
       name: 'register',
       component: Register
+      //component: () => import(/* webpackChunkName: "about" */ './views/Register.vue')
     },
     {
       path: '/login',
@@ -39,11 +42,23 @@ export default new Router({
       path: '/merchantlist',
       name: 'merchantlist',
       component: Merchant
+      //component: () => import(/* webpackChunkName: "about" */ './views/Merchant.vue')
     },
     {
       path: '/merchantlist/createmerchant',
       name: 'create-merchant',
       component: CreateMerchant
+    },
+    {
+      path: '/merchantlist/:viewmerchantId',
+      name: 'viewmerchant',
+      component: ViewMerchant
+    },
+    {
+      path: '/merchantlist/:viewmerchantId/edit',
+      name: 'edit-merchant',
+      component: EditMerchant
     }
+    
   ]
 })

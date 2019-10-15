@@ -15,4 +15,10 @@ module.exports = (app) => {
 
   app.post('/merchantscreate',
     MerchantController.postMerchant)
+
+  app.post('/merchants/:viewmerchantId',
+    MerchantController.show)
+
+  app.put('/merchants/:viewmerchantId',
+    MerchantController.put)
 }
