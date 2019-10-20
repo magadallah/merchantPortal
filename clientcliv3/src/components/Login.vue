@@ -21,7 +21,7 @@
             required
           ></v-text-field>
 	<br>
-  <div class="error" v-html="error"/>
+  <div class="danger-alert" v-html="error"/>
   <br>
   <v-btn class="cyan" dark
    @click="login">
@@ -37,7 +37,7 @@
 
 <script>
 import AuthenticationService from '@/services/AuthenticationService'
-import Panel from '@/components/Panel'
+// import Panel from '@/components/Panel'
 export default {
   data () {
     return {
@@ -47,17 +47,21 @@ export default {
     }
   },
   components: {
-    Panel
+    // Panel
   },
   methods: {
     async login () {
       try {
+        this.error = null
         const response = await AuthenticationService.login({
           email: this.email,
           password: this.password
         })
         this.$store.dispatch('setToken', response.data.token)
         this.$store.dispatch('setUser', response.data.user)
+        this.$router.push({
+          name: 'merchantlist'
+        })
       } catch (error) {
         this.error = error.response.data.error
       }
@@ -67,8 +71,7 @@ export default {
 </script>
 
 <style scoped>
-.error{
-  /* color: red; */
-  background-color: blanchedalmond;
+.danger-alert{
+    color: red
 }
 </style>

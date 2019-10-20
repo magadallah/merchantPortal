@@ -61,12 +61,12 @@
 </template>
 
 <script>
-import Panel from '@/components/Panel'
+// import Panel from '@/components/Panel'
 import MerchantService from '@/services/MerchantService'
 
 export default {
     components: {
-        Panel
+        // Panel
     },
     data () {
         return {

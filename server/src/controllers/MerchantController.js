@@ -1,11 +1,30 @@
 const { Merchant } = require('../models')
+// Will be used when implementing the search function
+const Sequelize = require('sequelize')
+const Op = Sequelize.Op
 
 module.exports = {
   async getAllMerchants (req, res) {
     try {
-      const merchants = await Merchant.findAll({
-        limit: 10
-      })
+      let merchants = null
+      const search = req.query.search
+      if (search) {
+        merchants = await Merchant.findAll({
+          where: {
+            [Op.or]: [
+              'merchantname', 'custnum', 'actnum', 'merchantstatus'
+            ].map(key => ({
+              [key]: {
+                [Op.like]: `%${search}%`
+              }
+            }))
+          }
+        })
+      } else {
+        merchants = await Merchant.findAll({
+          limit: 10
+        })
+      }
       res.send(merchants)
     } catch (err) {
       res.status(500).send({

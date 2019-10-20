@@ -21,7 +21,7 @@
           ></v-text-field>
         </form>
 	<br>
-  <div class="error" v-html="error"/>
+  <div class="danger-alert" v-html="error"/>
   <div class="msg" v-html="msg"/>
   <br>
   <v-btn class="cyan" dark
@@ -35,7 +35,7 @@
 
 <script>
 import AuthenticationService from '@/services/AuthenticationService'
-import Panel from '@/components/Panel'
+// import Panel from '@/components/Panel'
 export default {
   data () {
     return {
@@ -46,7 +46,7 @@ export default {
     }
   },
   components: {
-    Panel
+    // Panel
   },
   methods: {
     async register () {
@@ -57,6 +57,9 @@ export default {
         })
         this.$store.dispatch("setToken", response.data.token)
         this.$store.dispatch("setUser", response.data.user)
+        this.$router.push({
+          name: 'merchantlist'
+        })
       } catch (error) {
         this.error = error.response.data.error
       }

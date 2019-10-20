@@ -1,8 +1,12 @@
 import Api from '@/services/Api'
 
 export default {
-  getAllMerchants () {
-    return Api().post('merchants')
+  getAllMerchants (search) {
+    return Api().get('merchants', {
+      params: {
+        search: search
+      }
+    })
   },
   postMerchant (merchant) {
     return Api().post('merchantscreate', merchant)

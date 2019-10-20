@@ -28,3 +28,9 @@ export default {
   }
 };
 </script>
+<style>
+.danger-alert{
+    color: red
+}
+
+</style>

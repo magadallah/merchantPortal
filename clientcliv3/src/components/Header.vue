@@ -9,8 +9,9 @@
           </v-toolbar-title>
           <v-toolbar-items>
             <v-btn
-            text 
-            @click="navigateTo({ name: 'merchantlist'})">
+            v-if="$store.state.isUserLoggedIn"
+            text
+            :to="{ name: 'merchantlist'}">
             Merchants
             </v-btn>
           </v-toolbar-items>

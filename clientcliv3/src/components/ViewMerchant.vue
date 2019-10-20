@@ -44,7 +44,7 @@
 
 <script>
 import MerchantService from '@/services/MerchantService'
-import Panel from '@/components/Panel'
+// import Panel from '@/components/Panel'
 export default {
     data () {
         return {
@@ -56,7 +56,7 @@ export default {
         this.merchant = (await MerchantService.show(viewmerchantId)).data
     },
     components: {
-        Panel
+        // Panel
     },
     methods: {
         navigateTo(route) {

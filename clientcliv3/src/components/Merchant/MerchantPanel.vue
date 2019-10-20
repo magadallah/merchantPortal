@@ -1,8 +1,5 @@
 <template>
-<v-container>
 
-<v-layout>
-  <v-flex class="align-items">
     <panel title="List of Merchants" class="justify-center">
       <v-btn 
       slot="action"
@@ -47,19 +44,15 @@
       
       </div>    
     </panel> 
-  </v-flex>
-</v-layout>
-</v-container>
-
 </template>
 
 <script>
 import MerchantService from '@/services/MerchantService'
-import Panel from '@/components/Panel'
+// import Panel from '@/components/Panel'
 
 export default {
   components: {
-    Panel
+    // Panel
   },
    data () {
       return {
@@ -72,10 +65,18 @@ export default {
       }
 
     },
-    async mounted () {
-      // TO Do a request to the backend to get all merchants
-      this.merchants = (await MerchantService.getAllMerchants()).data
+      watch: {
+        '$route.query.search':{
+            immediate: true,
+            async handler(value){
+                this.merchants = (await MerchantService.getAllMerchants(value)).data
+            }
+        }
     }
+    // async mounted () {
+    //   // TO Do a request to the backend to get all merchants
+    //   this.merchants = (await MerchantService.getAllMerchants()).data
+    // }
   }
 </script>
 

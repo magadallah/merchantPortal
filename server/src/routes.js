@@ -10,7 +10,7 @@ module.exports = (app) => {
   app.post('/login',
     AuthenticationController.login)
 
-  app.post('/merchants',
+  app.get('/merchants',
     MerchantController.getAllMerchants)
 
   app.post('/merchantscreate',
