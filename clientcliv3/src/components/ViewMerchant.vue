@@ -75,7 +75,8 @@ export default {
         },
         async deleteMerchant(){
             //console.log('here')
-            if(await this.$vuetify.confirm("Delete item?")){
+            // this.$vuetify.confirm("Delete item?")
+            if(await window.confirm("Are you sure you want to delete this Merchant")){
                 const viewmerchantId = this.$store.state.route.params.viewmerchantId
            try{
             await MerchantService.delete(viewmerchantId)
