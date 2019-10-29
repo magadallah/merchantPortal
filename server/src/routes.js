@@ -21,4 +21,7 @@ module.exports = (app) => {
 
   app.put('/merchants/:viewmerchantId',
     MerchantController.put)
+
+  app.delete('/merchants/:viewmerchantId',
+    MerchantController.delete)
 }

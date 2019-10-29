@@ -16,5 +16,8 @@ export default {
   },
   put (merchant) {
     return Api().put(`merchants/${merchant.id}`, merchant)
+  },
+  delete (viewmerchantId) {
+    return Api().delete(`merchants/${viewmerchantId}` , viewmerchantId)
   }
 }

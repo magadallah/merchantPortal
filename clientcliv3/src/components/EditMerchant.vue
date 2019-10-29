@@ -50,9 +50,15 @@
             {{error}}
         </div>
           <v-btn class="cyan" dark
-          @click="save">
+          @click="update">
           Update Merchant
           </v-btn>
+          
+          <v-btn  class="red" dark
+          @click="cancel">
+          Cancel
+          </v-btn>
+          
     </panel>
     
     </v-flex>
@@ -85,7 +91,7 @@ export default {
       }
     },
     methods: {
-        async save() {
+        async update() {
             this.error = null
             const areAllFieldsFilledIn = Object
             .keys(this.merchant)
@@ -106,6 +112,11 @@ export default {
             }catch (err) {
               console.log(err)
             }
+      },
+      cancel() {
+        this.$router.push({
+          name: 'merchantlist'
+        })
       }
       
     },

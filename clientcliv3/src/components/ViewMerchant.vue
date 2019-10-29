@@ -30,14 +30,25 @@
                     ></textarea>
                 </div>
             </panel>
-            <v-btn 
+           
+        </v-flex>
+    </v-layout>
+    <v-flex>
+        <v-btn 
             class="cyan" 
             dark
             @click="navigateTo({name: 'edit-merchant' , params:{viewmerchantId:merchant.id}})">
             Edit
         </v-btn>
-        </v-flex>
-    </v-layout>
+        <v-btn 
+            class="red" 
+            dark
+            @click="deleteMerchant()">
+            Delete
+        </v-btn>
+
+    </v-flex>
+     
 </div>
 
 </template>
@@ -61,6 +72,20 @@ export default {
     methods: {
         navigateTo(route) {
             this.$router.push(route)
+        },
+        async deleteMerchant(){
+            //console.log('here')
+            if(await this.$vuetify.confirm("Delete item?")){
+                const viewmerchantId = this.$store.state.route.params.viewmerchantId
+           try{
+            await MerchantService.delete(viewmerchantId)
+            this.$router.push({
+              name: 'merchantlist',
+            })
+            }catch (err) {
+              console.log(err)
+            }
+            }
         }
     }
 }
